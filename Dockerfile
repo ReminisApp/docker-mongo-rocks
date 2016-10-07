@@ -27,7 +27,7 @@ RUN wget -O rocksdb-v${ROCKSDB_VERSION}.tar.gz https://github.com/facebook/rocks
     tar xvzf rocksdb-v${ROCKSDB_VERSION}.tar.gz && \
     rm -f rocksdb-v${ROCKSDB_VERSION}.tar.gz && \
     cd rocksdb-${ROCKSDB_VERSION} && \
-    CXXFLAGS="-flto -Os -s" make --max-load shared_lib && \
+    CXXFLAGS="-flto -Os -s" make -j$(nproc) --max-load shared_lib && \
     INSTALL_PATH=/usr make install && \
     cd .. && \
     rm -fr rocksdb-${ROCKSDB_VERSION}
@@ -37,9 +37,7 @@ ENV MONGO_VERSION 3.2.10
 RUN wget -O mongo-rocks-r${MONGO_VERSION}.tar.gz https://github.com/mongodb-partners/mongo-rocks/archive/r${MONGO_VERSION}.tar.gz && \
     tar xvzf mongo-rocks-r${MONGO_VERSION}.tar.gz && \
     rm -f mongo-rocks-r${MONGO_VERSION}.tar.gz && \
-    wget -O mongo-r${MONGO_VERSION}.tar.gz https://github.com/mongodb/mongo/archive/r${MONGO_VERSION}.tar.gz && \
-    tar xvzf mongo-r${MONGO_VERSION}.tar.gz && \
-    rm -f mongo-r${MONGO_VERSION}.tar.gz && \
+    git clone -b "r${MONGO_VERSION}" --single-branch --depth 1 https://github.com/mongodb/mongo.git mongo-r${MONGO_VERSION} && \
     mkdir -p mongo-r${MONGO_VERSION}/src/mongo/db/modules/ && \
     ln -sf /src/mongo-rocks-r${MONGO_VERSION} mongo-r${MONGO_VERSION}/src/mongo/db/modules/rocks && \
     cd mongo-r${MONGO_VERSION} && \
