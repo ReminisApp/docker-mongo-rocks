@@ -18,9 +18,7 @@ RUN set -x \
     && gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
     && rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
     && chmod +x /usr/local/bin/gosu \
-    && gosu nobody true && \
-    mkdir -p /data/db /data/configdb \
-    && chown -R mongodb:mongodb /data/db /data/configdb
+    && gosu nobody true
 
 ENV ROCKSDB_VERSION 4.11.2
 
