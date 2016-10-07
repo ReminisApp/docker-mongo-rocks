@@ -24,19 +24,25 @@ RUN set -x \
 
 ENV ROCKSDB_VERSION 4.11.2
 
-RUN wget -O v${ROCKSDB_VERSION}.tar.gz https://github.com/facebook/rocksdb/archive/v${ROCKSDB_VERSION}.tar.gz && \
-    tar xvzf v${ROCKSDB_VERSION}.tar.gz && \
-    rm -f v${ROCKSDB_VERSION}.tar.gz && \
+RUN wget -O rocksdb-v${ROCKSDB_VERSION}.tar.gz https://github.com/facebook/rocksdb/archive/v${ROCKSDB_VERSION}.tar.gz && \
+    tar xvzf rocksdb-v${ROCKSDB_VERSION}.tar.gz && \
+    rm -f rocksdb-v${ROCKSDB_VERSION}.tar.gz && \
     cd rocksdb-${ROCKSDB_VERSION} && \
     make --max-load static_lib && \
     INSTALL_PATH=/usr make --max-load install && \
     cd ..
 
-RUN git clone https://github.com/mongodb/mongo.git && \
-    git clone https://github.com/mongodb-partners/mongo-rocks.git && \
-    mkdir -p mongo/src/mongo/db/modules/ && \
-    ln -sf /src/mongo-rocks mongo/src/mongo/db/modules/rocks && \
-    cd mongo && \
+ENV MONGO_VERSION 3.2.10
+
+RUN wget -O mongo-rocks-r${MONGO_VERSION}.tar.gz https://github.com/mongodb-partners/mongo-rocks/archive/r${MONGO_VERSION}.tar.gz && \
+    tar xvzf mongo-rocks-r${MONGO_VERSION}.tar.gz && \
+    rm -f mongo-rocks-r${MONGO_VERSION}.tar.gz && \
+    wget -O mongo-r${MONGO_VERSION}.tar.gz https://github.com/mongodb/mongo/archive/r${MONGO_VERSION}.tar.gz && \
+    tar xvzf mongo-r${MONGO_VERSION}.tar.gz && \
+    rm -f mongo-r${MONGO_VERSION}.tar.gz && \
+    mkdir -p mongo-r${MONGO_VERSION}/src/mongo/db/modules/ && \
+    ln -sf /src/mongo-rocks-r${MONGO_VERSION} mongo/src/mongo/db/modules/rocks && \
+    cd mongo-r${MONGO_VERSION} && \
     scons
 
 VOLUME /data/db /data/configdb
