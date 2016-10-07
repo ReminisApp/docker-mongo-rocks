@@ -32,7 +32,7 @@ RUN wget -O rocksdb-v${ROCKSDB_VERSION}.tar.gz https://github.com/facebook/rocks
     cd .. && \
     rm -fr rocksdb-${ROCKSDB_VERSION}
 
-ENV MONGO_VERSION 3.2.10
+ENV MONGO_VERSION 3.3.12
 
 RUN wget -O mongo-rocks-r${MONGO_VERSION}.tar.gz https://github.com/mongodb-partners/mongo-rocks/archive/r${MONGO_VERSION}.tar.gz && \
     tar xvzf mongo-rocks-r${MONGO_VERSION}.tar.gz && \
