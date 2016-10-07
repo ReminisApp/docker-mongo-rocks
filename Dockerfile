@@ -22,10 +22,14 @@ RUN set -x \
     mkdir -p /data/db /data/configdb \
     && chown -R mongodb:mongodb /data/db /data/configdb
 
-RUN git clone https://github.com/facebook/rocksdb.git && \
-    cd rocksdb && \
-    make static_lib && \
-    INSTALL_PATH=/usr make install && \
+ENV ROCKSDB_VERSION 4.11.2
+
+RUN wget -O v${ROCKSDB_VERSION}.tar.gz https://github.com/facebook/rocksdb/archive/v${ROCKSDB_VERSION}.tar.gz && \
+    tar xvzf v${ROCKSDB_VERSION}.tar.gz && \
+    rm -f v${ROCKSDB_VERSION}.tar.gz && \
+    cd rocksdb-${ROCKSDB_VERSION} && \
+    make --max-load static_lib && \
+    INSTALL_PATH=/usr make --max-load install && \
     cd ..
 
 RUN git clone https://github.com/mongodb/mongo.git && \
