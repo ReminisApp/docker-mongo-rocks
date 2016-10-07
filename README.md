@@ -3,5 +3,5 @@
 ## refs
 
 * [facebook/rocksdb](https://github.com/facebook/rocksdb)
-* mongo-partners/mongo-rocks
+* [mongodb-partners/mongo-rocks](https://github.com/mongodb-partners/mongo-rocks)
 * mongo
