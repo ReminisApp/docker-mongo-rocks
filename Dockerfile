@@ -24,13 +24,15 @@ RUN set -x \
 
 ENV ROCKSDB_VERSION 4.11.2
 
+# -j$(nproc)
 RUN wget -O rocksdb-v${ROCKSDB_VERSION}.tar.gz https://github.com/facebook/rocksdb/archive/v${ROCKSDB_VERSION}.tar.gz && \
     tar xvzf rocksdb-v${ROCKSDB_VERSION}.tar.gz && \
     rm -f rocksdb-v${ROCKSDB_VERSION}.tar.gz && \
     cd rocksdb-${ROCKSDB_VERSION} && \
-    make --max-load static_lib && \
-    INSTALL_PATH=/usr make --max-load install && \
-    cd ..
+    CXXFLAGS="-flto -Os -s" make --max-load shared_lib && \
+    INSTALL_PATH=/usr make install && \
+    cd .. && \
+    rm -fr rocksdb-${ROCKSDB_VERSION}
 
 ENV MONGO_VERSION 3.2.10
 
@@ -41,9 +43,19 @@ RUN wget -O mongo-rocks-r${MONGO_VERSION}.tar.gz https://github.com/mongodb-part
     tar xvzf mongo-r${MONGO_VERSION}.tar.gz && \
     rm -f mongo-r${MONGO_VERSION}.tar.gz && \
     mkdir -p mongo-r${MONGO_VERSION}/src/mongo/db/modules/ && \
-    ln -sf /src/mongo-rocks-r${MONGO_VERSION} mongo/src/mongo/db/modules/rocks && \
+    ln -sf /src/mongo-rocks-r${MONGO_VERSION} mongo-r${MONGO_VERSION}/src/mongo/db/modules/rocks && \
     cd mongo-r${MONGO_VERSION} && \
-    scons
+    CXXFLAGS="-flto -Os -s" scons \
+        CPPPATH=/usr/local/include \
+        LIBPATH=/usr/local/lib \
+        -j$(nproc) \
+        --release \
+        --prefix=/usr \
+        --opt \
+        mongod \
+        install && \
+    cd .. && \
+    rm -fr mongo-rocks-r${MONGO_VERSION} mongo-r${MONGO_VERSION}
 
 VOLUME /data/db /data/configdb
 ADD docker-entrypoint.sh /
