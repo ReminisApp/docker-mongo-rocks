@@ -4,7 +4,7 @@
 
 * [facebook/rocksdb](https://github.com/facebook/rocksdb)
 * [mongodb-partners/mongo-rocks](https://github.com/mongodb-partners/mongo-rocks)
-* mongo
+* [mongo](https://github.com/mongodb/mongo)
 * https://github.com/structuresound/docker-mongo-rocks
 * https://github.com/jadsonlourenco/docker-mongo-rocks
 * https://github.com/docker-library/mongo
