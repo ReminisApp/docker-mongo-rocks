@@ -60,7 +60,6 @@ RUN wget -O mongo-rocks-r${MONGO_VERSION}.tar.gz https://github.com/mongodb-part
 VOLUME /data/db /data/configdb
 
 ENV MONGO_DATABASE dev
-ENV MONGO_USER user
 ADD docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
