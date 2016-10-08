@@ -1,0 +1,9 @@
+storage:
+  dbPath: /data/db
+  journal:
+    enabled: true
+  engine: rocksdb
+setParameter:
+  internalQueryExecYieldPeriodMS: 1000
+  internalQueryExecYieldIterations: 100000
+  failIndexKeyTooLong: false
