@@ -9,7 +9,7 @@ mongo:
     #- MONGO_USER=user
     #- MONGO_PASSWORD=user
     #- MONGO_DATABASE=dev
-  command: "--smallfiles --logpath=/dev/null --setParameter failIndexKeyTooLong=false --storageEngine rocksdb"
+  command: "--smallfiles --setParameter failIndexKeyTooLong=false"
 
 mongo-data:
   image: yongjhih/mongo-rocks

@@ -18,7 +18,7 @@ if [ "$1" = 'mongod' ]; then
 	fi
 fi
 
-exec "$@"
+exec "$@" --storageEngine rocksdb
 
 ##MONGO_ROOT_PASSWORD="root"
 MONGO_USER=${MONGO_PASSWORD:-$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 13)}
