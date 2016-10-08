@@ -23,3 +23,4 @@ docker run -it -e MONGO_ROOT_PASSWORD=password -e MONGO_USER=user -e MONGO_PASSW
 * https://github.com/jadsonlourenco/docker-mongo-rocks
 * https://github.com/docker-library/mongo
 * http://blog.parse.com/announcements/mongodb-rocksdb-parse/
+* http://blog.parse.com/learn/engineering/migrating-your-parse-app-to-mongorocks/
