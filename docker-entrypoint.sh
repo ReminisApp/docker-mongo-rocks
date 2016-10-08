@@ -25,6 +25,11 @@ MONGO_USER=${MONGO_PASSWORD:-$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 13
 MONGO_PASSWORD=${MONGO_PASSWORD:-$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 13)}
 ##MONGO_DATABASE="dev"
 
+mongo admin --eval "db.getSiblingDB('admin').runCommand({setParameter: 1, internalQueryExecYieldPeriodMS: 1000});"
+mongo admin --eval "db.getSiblingDB('admin').runCommand({setParameter: 1, internalQueryExecYieldIterations: 100000});"
+mongo admin --eval "db.getSiblingDB('$MONGO_DATABASE').runCommand({setParameter: 1, internalQueryExecYieldPeriodMS: 1000});"
+mongo admin --eval "db.getSiblingDB('$MONGO_DATABASE').runCommand({setParameter: 1, internalQueryExecYieldIterations: 100000});"
+
 if [ "$MONGO_ROOT_PASSWORD" ]; then
 	mongo admin --eval "db.createUser({user: 'root', pwd: '$MONGO_ROOT_PASSWORD', roles:[{role:'root',db:'admin'}]});"
 fi
