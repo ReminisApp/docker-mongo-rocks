@@ -1,5 +1,5 @@
 mongo:
-  image: yongjhih/mongo-rocks:3.3.12
+  image: yongjhih/mongo-rocks
   ports:
     - "27017:27017"
   volumes_from:
@@ -12,7 +12,7 @@ mongo:
   command: "--smallfiles --logpath=/dev/null --setParameter failIndexKeyTooLong=false"
 
 mongo-data:
-  image: yongjhih/mongo-rocks:3.3.12
+  image: yongjhih/mongo-rocks
   volumes:
     - /data/db
   command: "--break-mongo"

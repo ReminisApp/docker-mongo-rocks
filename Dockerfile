@@ -1,11 +1,11 @@
-FROM buildpack-deps:stretch
+FROM buildpack-deps
 
 RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 
 WORKDIR /src
 
 RUN apt-get update && \
-    apt-get install -y git zlib1g-dev libbz2-dev libsnappy-dev scons numactl gpg && \
+    apt-get install -y git zlib1g-dev libbz2-dev libsnappy-dev scons numactl gnupg && \
     rm -rf /var/lib/apt/lists/*
 
 ENV GOSU_VERSION 1.7
@@ -32,7 +32,7 @@ RUN wget -O rocksdb-v${ROCKSDB_VERSION}.tar.gz https://github.com/facebook/rocks
     cd .. && \
     rm -fr rocksdb-${ROCKSDB_VERSION}
 
-ENV MONGO_VERSION 3.3.12
+ENV MONGO_VERSION 3.2.0
 
 RUN wget -O mongo-rocks-r${MONGO_VERSION}.tar.gz https://github.com/mongodb-partners/mongo-rocks/archive/r${MONGO_VERSION}.tar.gz && \
     tar xvzf mongo-rocks-r${MONGO_VERSION}.tar.gz && \
