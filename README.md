@@ -7,7 +7,7 @@ docker run -it yongjhih/mongo-rocks
 ```
 
 ```
-docker run -it yongjhih/mongo-rocks --smallfiles --logpath=/dev/null --setParameter failIndexKeyTooLong=false
+docker run -it yongjhih/mongo-rocks --smallfiles --setParameter failIndexKeyTooLong=false
 ```
 
 ```
