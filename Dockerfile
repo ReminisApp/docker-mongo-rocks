@@ -4,8 +4,10 @@ RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 
 WORKDIR /src
 
-RUN apt-get update && \
-    apt-get install -y git zlib1g-dev libbz2-dev libsnappy-dev scons numactl gnupg && \
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv D68FA50FEA312927 && \
+    echo "deb http://repo.mongodb.org/apt/debian jessie/mongodb-org/3.2 main" > /etc/apt/sources.list.d/mongodb-org.list && \
+    apt-get update && \
+    apt-get install -y git zlib1g-dev libbz2-dev libsnappy-dev scons numactl gnupg mongodb-org-tools && \
     rm -rf /var/lib/apt/lists/*
 
 ENV GOSU_VERSION 1.7
