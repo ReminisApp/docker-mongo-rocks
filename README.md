@@ -10,10 +10,6 @@ docker run -it yongjhih/mongo-rocks
 docker run -it yongjhih/mongo-rocks --smallfiles --setParameter failIndexKeyTooLong=false
 ```
 
-```
-docker run -it -e MONGO_ROOT_PASSWORD=password -e MONGO_USER=user -e MONGO_PASSWORD=password -e MONGO_DATABASE=dev yongjhih/mongo-rocks --auth
-```
-
 ## refs
 
 * [facebook/rocksdb](https://github.com/facebook/rocksdb)
