@@ -15,13 +15,13 @@ RUN apt-get update && \
     dpkg -i percona-server-mongodb_3.0.8-1.2.trusty_amd64.deb && \
     dpkg -i percona-server-mongodb-dbg_3.0.8-1.2.trusty_amd64.deb
 
-#ENV PATH ${PATH}:/usr/local/go/bin
-#ENV GOPATH /go
-#RUN curl https://storage.googleapis.com/golang/go1.5.3.linux-amd64.tar.gz | tar xzf - -C /usr/local && \
-#    echo 'export PATH="/usr/local/go/bin:${PATH}:"; export GOPATH=/go' | tee /etc/profile.d/golong.sh && \
-#    go get github.com/facebookgo/rocks-strata/strata/cmd/mongo/lreplica_s3storage_driver/strata && \
-#    go install github.com/facebookgo/rocks-strata/strata/cmd/mongo/lreplica_s3storage_driver/strata && \
-#    rm -fr /src/*
+ENV PATH ${PATH}:/usr/local/go/bin
+ENV GOPATH /go
+RUN curl https://storage.googleapis.com/golang/go1.5.3.linux-amd64.tar.gz | tar xzf - -C /usr/local && \
+    echo 'export PATH="/usr/local/go/bin:${PATH}:"; export GOPATH=/go' | tee /etc/profile.d/golong.sh && \
+    go get github.com/facebookgo/rocks-strata/strata/cmd/mongo/lreplica_drivers/strata && \
+    go install github.com/facebookgo/rocks-strata/strata/cmd/mongo/lreplica_drivers/strata && \
+    rm -fr /src/*
 
 VOLUME /data/db /data/configdb
 
