@@ -1,5 +1,14 @@
 # docker mongo with rocksdb
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/yongjhih/mongo-rocks.svg)](https://hub.docker.com/r/yongjhih/mongo-rocks/)
+[![Docker Stars](https://img.shields.io/docker/stars/yongjhih/mongo-rocks.svg)](https://hub.docker.com/r/yongjhih/mongo-rocks/)
+[![Docker Tag](https://img.shields.io/github/tag/yongjhih/docker-mongo-rocks.svg)](https://hub.docker.com/r/yongjhih/mongo-rocks/tags/)
+<!--
+[![License](https://img.shields.io/github/license/yongjhih/docker-mongo-rocks.svg)](https://github.com/yongjhih/docker-mongo-rocks/raw/master/LICENSE.txt)
+[![Travis CI](https://img.shields.io/travis/yongjhih/docker-mongo-rocks.svg)](https://travis-ci.org/yongjhih/docker-mongo-rocks)
+[![Gitter Chat](https://img.shields.io/gitter/room/yongjhih/docker-mongo-rocks.svg)](https://gitter.im/yongjhih/docker-mongo-rocks)
+-->
+
 ## Usage
 
 ```
