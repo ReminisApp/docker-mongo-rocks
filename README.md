@@ -29,3 +29,4 @@ docker run -it yongjhih/mongo-rocks --smallfiles --setParameter failIndexKeyTooL
 * https://github.com/docker-library/mongo
 * http://blog.parse.com/announcements/mongodb-rocksdb-parse/
 * http://blog.parse.com/learn/engineering/migrating-your-parse-app-to-mongorocks/
+* http://repo.percona.com/apt/pool/main/p/percona-server-mongodb/
